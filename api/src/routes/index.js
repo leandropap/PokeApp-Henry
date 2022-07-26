@@ -13,6 +13,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 //Landing Page
+// RESOLVER DESDE EL FRONT
 router.get('/', (req, res) => {
     res.send('Landing page');
 })
@@ -78,8 +79,10 @@ router.get('/pokemons/:ID', async (req, res) => {
     }
 });
 
-//GET TYPES
 router.get('/type', async (req, res) => {
+    const pokeTypesDB = await Types.findAll({});
+    if (pokeTypesDB) return res.send(pokeTypesDB);
+
     const pokeTypes = await getPokeTypes();
     res.send(pokeTypes);
 });

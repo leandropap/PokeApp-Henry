@@ -1,19 +1,15 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
 import { getPokemons } from '../redux/actions';
 import NavBar from './NavBar'
+import Filter from './Filter'
+import Cards from './Cards'
 
 export default function Home() {
 
     const dispatch = useDispatch();
-    const allPokes = useSelector((state) => state.pokemons);
 
 
-    useEffect(() => {
-        dispatch(getPokemons());
-    });
 
     function handleClick(e) {
         e.preventDefault();
@@ -22,13 +18,15 @@ export default function Home() {
 
     return (
         <>
-            < div >
-                <NavBar />
-                <h1> Pokemon Web App</h1>
-                <button onClick={e => { handleClick(e) }}>
-                    Reload Pokemons
-                </button>
-            </div >
+            <NavBar />
+            <h1> Welcome</h1>
+            <h1> Pokemon Web App</h1>
+
+            <button onClick={e => { handleClick(e) }}>
+                Reload Pokemons
+            </button>
+            <Filter />
+            <Cards />
         </>
     )
 }

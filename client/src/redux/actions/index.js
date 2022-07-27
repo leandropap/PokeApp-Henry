@@ -13,7 +13,6 @@ export const GET_POKETYPES = 'GET_POKETYPES';
 export const getPokemons = async () => {
     return async function (dispatch) {
         let pokemons = await axios.get('http://localhost:3001/pokemons');
-
         return dispatch({
             type: GET_POKEMONS,
             payload: pokemons.data

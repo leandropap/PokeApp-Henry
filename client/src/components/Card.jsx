@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-function Card() {
+function Card({ name, img, type }) {
 
     return (
-        <Link></Link>
+        <>
+            <img src={img} alt='Img not found' width='250px' />
+            <p>{name}</p>
+            <p>{type}</p>
+        </>
     )
 }
 

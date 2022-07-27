@@ -10,7 +10,7 @@ export const POST_POKEMON = 'POST_POKEMON';
 export const GET_POKETYPES = 'GET_POKETYPES';
 
 //Action Creators
-export const getPokemons = async () => {
+export const getPokemons =  () => {
     return async function (dispatch) {
         let pokemons = await axios.get('http://localhost:3001/pokemons');
         return dispatch({

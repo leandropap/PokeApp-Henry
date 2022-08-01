@@ -8,9 +8,11 @@ export const GET_POKEMONS = 'GET_POKEMONS';
 export const GET_POKE_BY_ID = 'GET_POKE_BY_ID';
 export const POST_POKEMON = 'POST_POKEMON';
 export const GET_POKETYPES = 'GET_POKETYPES';
+export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
+export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 
 //Action Creators
-export const getPokemons =  () => {
+export const getPokemons = () => {
     return async function (dispatch) {
         let pokemons = await axios.get('http://localhost:3001/pokemons');
         return dispatch({
@@ -20,7 +22,9 @@ export const getPokemons =  () => {
     }
 }
 
-export const getPokeTypes = async () => {
+
+
+export const getPokeTypes = () => {
     return async function (dispatch) {
         let pokeTypes = await axios.get('http://localhost:3001/type');
 
@@ -31,3 +35,17 @@ export const getPokeTypes = async () => {
     };
 };
 
+export const filterPokeByType = (payload) => {
+    console.log(payload)
+    return ({
+        type: FILTER_BY_TYPE,
+        payload
+    })
+};
+
+export const orderByName = (payload) => {
+    return ({
+        type: ORDER_BY_NAME,
+        payload
+    })
+}

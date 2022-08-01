@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { filterPokeByType, orderByName } from "../redux/actions";
 
 export default function Filter() {
+    const dispatch = useDispatch(); //eslint-disable-next-line
+    const [currentPage, setCurrentPage] = React.useState(1); //eslint-disable-next-line
+    const [order, setOrder] = useState('');
+
+    const handleFilterPokeByType = (e) => {
+        e.preventDefault();
+        dispatch(filterPokeByType(e.target.value))
+    }
+
+    const handleSort = (e) => {
+        e.preventDefault();
+        dispatch(orderByName(e.target.value));
+        setCurrentPage(1);
+        setOrder(`Ordering`)
+    }
+
     return (
         <div>
-            <select>
-                <option value='asc'>Ascemding</option>
+            <select onChange={e => { handleSort(e) }}>
+                <option value='none'>None</option>
+                <option value='asc'>Ascending</option>
                 <option value='desc'>Descemding</option>
             </select>
-            <select>
+            <select onChange={e => handleFilterPokeByType(e)}>
                 <option value='all'>All</option>
                 <option value='normal'>Normal</option>
                 <option value='fighting'>Fighting</option>

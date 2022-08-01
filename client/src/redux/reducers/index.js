@@ -1,8 +1,10 @@
-import { GET_POKEMONS, GET_POKETYPES } from "../actions";
+import { GET_POKEMONS, GET_POKETYPES, FILTER_BY_TYPE, ORDER_BY_NAME } from "../actions";
 
 const initialState = {
     pokemons: [],
+    allPokemons: [],
     pokeTypes: [],
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -10,11 +12,44 @@ const rootReducer = (state = initialState, action) => {
         case GET_POKEMONS: return {
             ...state,
             pokemons: action.payload,
+            allPokemons: action.payload
         };
         case GET_POKETYPES: return {
             ...state,
             pokeTypes: action.payload,
         }
+        case FILTER_BY_TYPE:
+            const allPokes = state.pokemons;
+            const typeFilter = action.payload === 'all' ?
+                allPokes :
+                allPokes.filter(p => p.types === action.payload)
+            return {
+                ...state,
+                pokemons: typeFilter
+            }
+        case ORDER_BY_NAME:
+            if (action.payload === 'none') return {
+                ...state,
+                pokemons: state.allPokemons
+            }
+            else {
+                let sortedPokes = action.payload === 'asc' ?
+                    state.pokemons.sort(function (a, b) {
+                        if (a.name > b.name) return 1;
+                        if (b.name > a.name) return -1;
+                        return 0;
+                    }) :
+                    state.pokemons.sort(function (a, b) {
+                        if (a.name > b.name) return -1;
+                        if (b.name > a.name) return 1;
+                        return 0;
+                    })
+                return {
+                    ...state,
+                    pokemons: sortedPokes
+                }
+            }
+
         default: return state
     }
 }

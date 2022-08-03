@@ -56,11 +56,11 @@ router.get('/pokemons', async (req, res) => {
 //Busca pokes pasados como params, sea por su ID o nombre.
 //Para la DB usamos Id tipo UUID que es alfanumerica de 36 char.
 //FALTA RESOLVER QUE DEVUELVA DESDE DB PASANDO NOMBRE
-router.get('/pokemons/:ID', async (req, res) => {
-    let { ID } = req.params;
-    if (ID.length === 36) {
+router.get('/pokemons/:id', async (req, res) => {
+    let { id } = req.params;
+    if (id.length === 36) {
         const DBPokemon = await Pokemon.findOne({
-            where: { ID },
+            where: { id },
             include: {
                 model: Types,
                 attributes: ['name'],
@@ -70,9 +70,9 @@ router.get('/pokemons/:ID', async (req, res) => {
         if (DBPokemon) return res.send(DBPokemon);
         else return res.status(404).send('Pokemon not found');
     }
-    ID = ID.toLowerCase();
+    id = id.toLowerCase();
     try {
-        const ApiPokeName = await getPokemonByName(ID);
+        const ApiPokeName = await getPokemonByName(id);
         res.send(ApiPokeName);
     } catch (error) {
         res.status(404).send('Pokemon not found');

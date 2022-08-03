@@ -1,4 +1,4 @@
-import { GET_POKEMONS, GET_POKETYPES, FILTER_BY_TYPE, ORDER_BY_NAME } from "../actions";
+import { GET_POKEMONS, GET_POKE_BY_NAME, GET_POKETYPES, FILTER_BY_TYPE, ORDER_BY_NAME } from "../actions";
 
 const initialState = {
     pokemons: [],
@@ -14,19 +14,23 @@ const rootReducer = (state = initialState, action) => {
             pokemons: action.payload,
             allPokemons: action.payload
         };
+        case GET_POKE_BY_NAME: return {
+            ...state,
+            pokemons: action.payload
+        };
         case GET_POKETYPES: return {
             ...state,
             pokeTypes: action.payload,
-        }
+        };
         case FILTER_BY_TYPE:
             const allPokes = state.pokemons;
             const typeFilter = action.payload === 'all' ?
-                allPokes :
-                allPokes.filter(p => p.types === action.payload)
+                state.allPokemons :
+                allPokes.filter(p => p.types[0] === action.payload)
             return {
                 ...state,
                 pokemons: typeFilter
-            }
+            };
         case ORDER_BY_NAME:
             if (action.payload === 'none') return {
                 ...state,
@@ -48,7 +52,7 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     pokemons: sortedPokes
                 }
-            }
+            };
 
         default: return state
     }

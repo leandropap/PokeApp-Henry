@@ -5,10 +5,11 @@ import SearchBar from "./SearchBar";
 export default function NavBar() {
     return (
         <>
-            <SearchBar />
             <Link to='/home'>
                 <button>Home</button>
             </Link>
+
+            <SearchBar />
         </>
     )
 

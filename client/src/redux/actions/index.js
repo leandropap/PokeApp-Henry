@@ -5,7 +5,7 @@ import axios from 'axios';
 // Esto es, llamar al directorio donde se encuentra nuestr back end.
 
 export const GET_POKEMONS = 'GET_POKEMONS';
-export const GET_POKE_BY_ID = 'GET_POKE_BY_ID';
+export const GET_POKE_BY_NAME = 'GET_POKE_BY_NAME';
 export const POST_POKEMON = 'POST_POKEMON';
 export const GET_POKETYPES = 'GET_POKETYPES';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
@@ -20,9 +20,22 @@ export const getPokemons = () => {
             payload: pokemons.data
         })
     }
-}
+};
 
+export const getPokeByName = (name) => {
+    return async function (dispatch) {
+        try {
+            let pokeName = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
 
+            return dispatch({
+                type: GET_POKE_BY_NAME,
+                payload: pokeName.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+};
 
 export const getPokeTypes = () => {
     return async function (dispatch) {

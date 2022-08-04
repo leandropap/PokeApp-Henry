@@ -10,16 +10,14 @@ export default function Paginado({ allPokes, pokesPerPage, paginado }) {
 
     return (
         <nav>
-            <ul>
-                {pagenumbers && pagenumbers.map(n => {
-                    return (
-                        <li className="n" key={n} >
-                            <a onClick={() => { paginado(n) }}> {n}</a>
-                        </li>
-                    )
-                }
-                )}
-            </ul>
+            {pagenumbers && pagenumbers.map(n => {
+                return (
+                    <button className="n" key={n} >
+                        <a onClick={() => { paginado(n) }}> {n}</a>
+                    </button>
+                )
+            }
+            )}
         </nav >
     )
 }

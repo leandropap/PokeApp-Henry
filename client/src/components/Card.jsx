@@ -1,17 +1,18 @@
 import React from "react";
-// import { Link } from 'react-router-dom';
+import s from './Card.module.css'
 
 function Card({ name, img, types, id }) {
 
     return (
-        <>
-            <p>{name.toUpperCase()}</p>
-            <p>Pokedex N° {id}</p>
-            <p>{types[0]}</p>
-            <p>{types[1]}</p>
-            <img src={img} alt='Img not found' width='250px' />
-
-        </>
+        <div className={s.card}>
+            <div className={s.card_title}>
+                <p>{name.toUpperCase()}</p>
+                <p>{types[0]} {types[1]}</p>
+            </div>
+            <div className={s.card_image}>
+                <img src={img} alt='Img not found' width='200px' />
+            </div>
+        </ div>
     )
 }
 

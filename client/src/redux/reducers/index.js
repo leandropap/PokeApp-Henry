@@ -26,7 +26,7 @@ const rootReducer = (state = initialState, action) => {
             const allPokes = state.pokemons;
             const typeFilter = action.payload === 'all' ?
                 state.allPokemons :
-                allPokes.filter(p => p.types[0] === action.payload)
+                allPokes.filter(p => (p.types[0] === action.payload || (p.types[1] && p.types[1]===action.payload)))
             return {
                 ...state,
                 pokemons: typeFilter

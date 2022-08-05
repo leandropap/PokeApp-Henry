@@ -1,4 +1,4 @@
-import { GET_POKEMONS, GET_POKE_BY_NAME, GET_POKETYPES, FILTER_BY_TYPE, ORDER_BY_NAME } from "../actions";
+import { GET_POKEMONS, GET_POKE_BY_NAME, POST_POKEMON, GET_POKETYPES, FILTER_BY_TYPE, ORDER_BY_NAME } from "../actions";
 
 const initialState = {
     pokemons: [],
@@ -22,11 +22,14 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             pokeTypes: action.payload,
         };
+        case POST_POKEMON: return {
+            ...state
+        }
         case FILTER_BY_TYPE:
             const allPokes = state.pokemons;
             const typeFilter = action.payload === 'all' ?
                 state.allPokemons :
-                allPokes.filter(p => (p.types[0] === action.payload || (p.types[1] && p.types[1]===action.payload)))
+                allPokes.filter(p => (p.types[0] === action.payload || (p.types[1] && p.types[1] === action.payload)))
             return {
                 ...state,
                 pokemons: typeFilter

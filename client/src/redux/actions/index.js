@@ -48,6 +48,14 @@ export const getPokeTypes = () => {
     };
 };
 
+export const postPokemon = () => {
+    return async function (dispatch) {
+        let pokePost = await axios.post('http://localhost:3001/pokemons')
+        console.log(pokePost)
+        return pokePost
+    }
+}
+
 export const filterPokeByType = (payload) => {
     console.log(payload)
     return ({

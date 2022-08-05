@@ -1,8 +1,11 @@
 import React from "react";
+import NavBar from "./NavBar";
 
 export default function Detail({ id, name, img, types, hp, attack, defense, height, weight }) {
     return (
         <>
+            <NavBar />
+
             <h1>Detalle</h1>
             <p>{name.toUpperCase()}</p>
             <p>Pokedex N° {id}</p>

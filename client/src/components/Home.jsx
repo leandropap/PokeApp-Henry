@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemons } from '../redux/actions';
+import { Link } from 'react-router-dom'
 import NavBar from './NavBar'
 import Filter from './Filter'
 import Paginado from './Paginado'
@@ -33,6 +34,9 @@ export default function Home() {
     return (
         <>
             <NavBar />
+            <Link to='/newpokemon'>
+                <button className={s.action_button}>Create new Pokemon</button>
+            </Link>
             <h1> Pokemon Web App</h1>
 
             <button onClick={e => { handleClick(e) }} className={s.action_button}>

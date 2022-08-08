@@ -24,7 +24,7 @@ const rootReducer = (state = initialState, action) => {
         };
         case POST_POKEMON: return {
             ...state
-        }
+        };
         case FILTER_BY_TYPE:
             const allPokes = state.pokemons;
             const typeFilter = action.payload === 'all' ?

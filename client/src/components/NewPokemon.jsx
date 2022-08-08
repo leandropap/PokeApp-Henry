@@ -46,6 +46,20 @@ export default function NewPokemon() {
         setInput({ name: '', types: [], img: '', hp: '', attack: '', defense: '', height: '', weight: '' });
     }
 
+    const validate = () => {
+        let errors = {};
+        if (!input.name) {
+            errors.name = 'Name required'
+        } else if (!input.types) {
+            errors.types = 'Types required'
+        }
+
+        if (input.attack > 100) {
+            errors.attack = 'Must be equal or less than 100'
+        }
+        return errors
+    }
+
     return (
         <>
             <NavBar />

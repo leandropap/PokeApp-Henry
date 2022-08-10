@@ -4,6 +4,7 @@ const { getPokemonDB } = require('../controllers/getPokemonByName');
 const { getApiPokemons } = require('../controllers/getApiPokemons');
 const { getPokeTypes } = require('../controllers/getPokeTypes');
 const { Pokemon, Types } = require('../db');
+const { Op } = require('sequelize');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -90,14 +91,13 @@ router.get('/type', async (req, res) => {
 
 //POST POKEMONS
 //Pasamos data por body y hace post de un nuevo pokemon hacia nuestra DB
-// POR QUE NO FUNCIONAAAAAAAAAAAAA
 router.post('/pokemons', async (req, res) => {
-    const { name, hp, attack, defense, speed, height, weight, createdInDb, type } = req.body;
-    const createdPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, createdInDb });
+    const { name, hp, attack, defense, speed, height, weight, type, createdInDb, img } = req.body;
+    const createdPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, createdInDb, img });
     const pokeType = await Types.findAll({
-        where: { name: type }
+        where: { name: { [Op.or]: [type] } }
     });
-    createdPoke.addType(pokeType);
+    createdPoke.addTypes(pokeType);
     res.send('Pokemon created succesfully')
 });
 

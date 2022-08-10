@@ -16,7 +16,8 @@ export default function Home() {
     const [pokesPerPage, setpokesPerPage] = React.useState(12);
     const lastPokeIndex = currentPage * pokesPerPage;
     const firstPokeIndex = lastPokeIndex - pokesPerPage;
-    const currentPokes = allPokes.slice(firstPokeIndex, lastPokeIndex)
+    const currentPokes = allPokes.slice(firstPokeIndex, lastPokeIndex) //eslint-disable-next-line
+    const [order, setOrder] = React.useState('')
 
     const paginado = (currentPage) => {
         setCurrentPage(currentPage)
@@ -42,7 +43,7 @@ export default function Home() {
             <button onClick={e => { handleClick(e) }} className={s.action_button}>
                 Reload Pokemons
             </button>
-            <Filter />
+            <Filter setCurrentPage={setCurrentPage} setOrder={setOrder} />
             <Paginado
                 allPokes={allPokes.length}
                 pokesPerPage={pokesPerPage}
@@ -59,6 +60,7 @@ export default function Home() {
                                 img={poke.img}
                                 name={poke.name}
                                 types={poke.types}
+                                attack={poke.attack}
                             />
                         )
                     })

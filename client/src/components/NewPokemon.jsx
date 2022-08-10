@@ -15,6 +15,7 @@ export default function NewPokemon() {
         hp: '',
         attack: '',
         defense: '',
+        speed: '',
         height: '',
         weight: '',
     });
@@ -28,7 +29,6 @@ export default function NewPokemon() {
             ...input,
             [e.target.name]: e.target.value
         });
-        console.log(input);
     };
 
     const handleSelect = (e) => {
@@ -38,58 +38,70 @@ export default function NewPokemon() {
         })
     };
 
-    const handleSubmit = (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
-        console.log(input);
+        //console.log(input);
         dispatch(postPokemon(input));
         alert(`${input.name} created succesfully`);
-        setInput({ name: '', types: [], img: '', hp: '', attack: '', defense: '', height: '', weight: '' });
+        setInput({ name: '', types: [], img: '', hp: '', attack: '', defense: '', speed: '', height: '', weight: '' });
     }
 
-    const validate = () => {
-        let errors = {};
-        if (!input.name) {
-            errors.name = 'Name required'
-        } else if (!input.types) {
-            errors.types = 'Types required'
-        }
+    // const validate = () => {
+    //     let errors = {};
+    //     if (!input.name) {
+    //         errors.name = 'Name required'
+    //     } else if (!input.types) {
+    //         errors.types = 'Types required'
+    //     }
 
-        if (input.attack > 100) {
-            errors.attack = 'Must be equal or less than 100'
-        }
-        return errors
-    }
+    //     if (input.attack > 100) {
+    //         errors.attack = 'Must be equal or less than 100'
+    //     }
+    //     return errors
+    // }
 
     return (
         <>
             <NavBar />
             <h1>Create your own Pokemon</h1>
 
-            <form>
+            <form onSubmit={e => { handleClick(e) }}>
                 <div>
                     <label>Name</label>
                     <input type='text' name='name' value={input.name} onChange={e => handleChange(e)} />
                 </div>
+
                 <select onChange={e => { handleSelect(e) }}>
                     {types.map(t => (<option value={t.name} key={t.id}>{t.name}</option>))}
                 </select>
+
                 <ul><li>{input.types.map(t => `${t.toUpperCase()} `)}</li></ul>
+
                 <div>
                     <label>Image</label>
                     <input type='text' name='img' value={input.img} onChange={e => handleChange(e)} />
                 </div>
+
                 <div>
                     <label>HP</label>
                     <input type='number' name='hp' value={input.hp} onChange={e => handleChange(e)} />
                 </div>
+
                 <div>
                     <label>Attack</label>
                     <input type='number' name='attack' value={input.attack} onChange={e => handleChange(e)} />
                 </div>
+
                 <div>
                     <label>Defense</label>
                     <input type='number' name='defense' value={input.defense} onChange={e => handleChange(e)} />
                 </div>
+
+                <div>
+                    <label>Speed</label>
+                    <input type='number' name='speed' value={input.speed} onChange={e => handleChange(e)} />
+                </div>
+
                 <div>
                     <label>Height</label>
                     <input type='number' name='height' value={input.height} onChange={e => handleChange(e)} />
@@ -98,9 +110,10 @@ export default function NewPokemon() {
                     <label>Weight</label>
                     <input type='number' name='weight' value={input.weight} onChange={e => handleChange(e)} />
                 </div>
+
+                <button type='submit' >Create Pokemon</button>
             </form>
 
-            <button type='submit' onSubmit={e => { handleSubmit(e) }}>Create Pokemon</button>
         </>
     )
 }

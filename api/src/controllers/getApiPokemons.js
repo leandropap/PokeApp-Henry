@@ -12,6 +12,7 @@ const getApiPokemons = async () => {
         poke.id = pokeUrl.data.id;
         poke.img = pokeUrl.data.sprites['other']['official-artwork']['front_default']
         poke.types = pokeUrl.data.types.map(t => t.type.name)
+        poke.attack = pokeUrl.data.stats[1]['base_stat']
     };
     // console.log(allPokes);
     return allPokes;

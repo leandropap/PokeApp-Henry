@@ -6,10 +6,13 @@ import axios from 'axios';
 
 export const GET_POKEMONS = 'GET_POKEMONS';
 export const GET_POKE_BY_NAME = 'GET_POKE_BY_NAME';
+export const GET_POKE_BY_ID = 'GET_POKE_BY_ID'
 export const POST_POKEMON = 'POST_POKEMON';
 export const GET_POKETYPES = 'GET_POKETYPES';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
+export const FILTER_BY_SOURCE = 'FILTER_BY_SOURCE';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
+export const ORDER_BY_ATTACK = 'ORDER_BY_ATTACK'
 
 //Action Creators
 export const getPokemons = () => {
@@ -37,6 +40,21 @@ export const getPokeByName = (name) => {
     }
 };
 
+export const getPokeDetail = (id) => {
+    return async function (dispatch) {
+        try {
+            let pokeDetail = await axios.get(`http://localhost:3001/pokemons/:${id}`);
+
+            return dispatch({
+                type: GET_POKE_BY_ID,
+                payload: pokeDetail.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+};
+
 export const getPokeTypes = () => {
     return async function (dispatch) {
         let pokeTypes = await axios.get('http://localhost:3001/type');
@@ -48,9 +66,9 @@ export const getPokeTypes = () => {
     };
 };
 
-export const postPokemon = () => {
-    return async function (dispatch) {
-        let pokePost = await axios.post('http://localhost:3001/pokemons')
+export const postPokemon = (payload) => {
+    return async function () {
+        let pokePost = await axios.post('http://localhost:3001/pokemons', payload)
         console.log(pokePost)
         return pokePost
     }
@@ -64,9 +82,24 @@ export const filterPokeByType = (payload) => {
     })
 };
 
+export const filterPokeBySource = (payload) => {
+    console.log(payload)
+    return ({
+        type: FILTER_BY_SOURCE,
+        payload
+    })
+};
+
 export const orderByName = (payload) => {
     return ({
         type: ORDER_BY_NAME,
+        payload
+    })
+}
+
+export const orderByAttack = (payload) => {
+    return ({
+        type: ORDER_BY_ATTACK,
         payload
     })
 }

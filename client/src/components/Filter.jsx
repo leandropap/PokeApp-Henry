@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterPokeByType, orderByName } from "../redux/actions";
+import { filterPokeBySource, filterPokeByType, orderByAttack, orderByName } from "../redux/actions";
 import { getPokeTypes } from "../redux/actions";
 
-export default function Filter() {
-    const dispatch = useDispatch(); //eslint-disable-next-line
-    const [currentPage, setCurrentPage] = React.useState(1); //eslint-disable-next-line
-    const [order, setOrder] = useState('');
+export default function Filter({ setCurrentPage, setOrder }) {
+    const dispatch = useDispatch();
     const types = useSelector((state) => state.pokeTypes);
 
     React.useEffect(() => {
@@ -18,25 +16,44 @@ export default function Filter() {
         dispatch(filterPokeByType(e.target.value))
     }
 
-    const handleSort = (e) => {
+    const handleFilterPokeBySource = (e) => {
+        e.preventDefault();
+        dispatch(filterPokeBySource(e.target.value))
+    }
+
+    const handleSortAZ = (e) => {
         e.preventDefault();
         dispatch(orderByName(e.target.value));
         setCurrentPage(1);
-        setOrder(`Ordering`)
+        setOrder(`Ordering a-Z< ${e.target.value}`)
+    }
+
+    const handleSortAT = (e) => {
+        e.preventDefault();
+        dispatch(orderByAttack(e.target.value));
+        setCurrentPage(1);
+        setOrder(`Ordering a-Z< ${e.target.value}`)
     }
 
     return (
         <div>
-            <select onChange={e => { handleSort(e) }}>
-                <option value='none'>None</option>
+            <label>Sort by Name</label>
+            <select onChange={e => { handleSortAZ(e) }}>
                 <option value='asc'>Ascending</option>
-                <option value='desc'>Descemding</option>
+                <option value='desc'>Descending</option>
             </select>
+            <label>Sort by attack</label>
+            <select onChange={e => { handleSortAT(e) }}>
+                <option value='asc'>Ascending</option>
+                <option value='desc'>Descending</option>
+            </select>
+            <label>Filter by type</label>
             <select onChange={e => handleFilterPokeByType(e)}>
                 <option value='all' key='0'>all</option>
                 {types.map(t => (<option value={t.name} key={t.id}> {t.name} </option>))}
             </select>
-            <select>
+            <label>Filter by source</label>
+            <select onChange={e => handleFilterPokeBySource(e)}>
                 <option value='all'>All</option>
                 <option value='api'>From API</option>
                 <option value='db'>From DB</option>

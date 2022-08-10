@@ -11,7 +11,6 @@ export default function NavBar() {
     const handleInputChange = (e) => {
         e.preventDefault();
         setPokeName(e.target.value);
-        console.log(pokeName);
     }
 
     const handleSubmit = (e) => {

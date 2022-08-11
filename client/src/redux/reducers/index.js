@@ -16,11 +16,11 @@ const rootReducer = (state = initialState, action) => {
         };
         case GET_POKE_BY_NAME: return {
             ...state,
-            pokemons: action.payload
+            pokemons: [action.payload]
         };
         case GET_POKE_BY_ID: return {
             ...state,
-            pokeDetail: action.payload
+            pokeDetail: [action.payload]
         }
         case GET_POKETYPES: return {
             ...state,

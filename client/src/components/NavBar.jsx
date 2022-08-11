@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getPokeByName } from "../redux/actions";
 import s from './NavBar.module.css'
 
-export default function NavBar() {
+export default function NavBar({ setCurrentPage }) {
     const [pokeName, setPokeName] = React.useState('');
     const dispatch = useDispatch();
 
@@ -17,19 +17,21 @@ export default function NavBar() {
         e.preventDefault();
         dispatch(getPokeByName(pokeName));
     }
+
+    const handleClick = (e) => {
+        setCurrentPage(1);
+    }
+
+
     return (
         <div className={s.display}>
             <Link to='/home' >
-                <button className={s.action_button}>Home</button>
+                <button className={s.action_button} onClick={e => { handleClick(e) }}>Home</button>
             </Link>
 
             <input type='text' placeholder='Search any Pokemon'
                 onChange={e => { handleInputChange(e) }} />
-            <Link to='/detail'>
-                <button type='submit' onClick={e => { handleSubmit(e) }}
-                    className={s.action_button}
-                > Catch'em ! </button>
-            </Link>
+            <button type='submit' onClick={e => { handleSubmit(e) }} className={s.action_button} > Catch'em ! </button>
         </div>
     )
 

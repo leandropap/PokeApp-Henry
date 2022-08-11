@@ -25,7 +25,7 @@ export default function Filter({ setCurrentPage, setOrder }) {
         e.preventDefault();
         dispatch(orderByName(e.target.value));
         setCurrentPage(1);
-        setOrder(`Ordering a-Z< ${e.target.value}`)
+        setOrder(`Ordering A-Z< ${e.target.value}`)
     }
 
     const handleSortAT = (e) => {

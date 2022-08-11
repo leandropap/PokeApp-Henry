@@ -34,7 +34,9 @@ export default function Home() {
 
     return (
         <>
-            <NavBar />
+            <NavBar
+                setCurrentPage={setCurrentPage}
+            />
             <Link to='/newpokemon'>
                 <button className={s.action_button}>Create new Pokemon</button>
             </Link>
@@ -43,13 +45,15 @@ export default function Home() {
             <button onClick={e => { handleClick(e) }} className={s.action_button}>
                 Reload Pokemons
             </button>
-            <Filter setCurrentPage={setCurrentPage} setOrder={setOrder} />
+            <Filter
+                setCurrentPage={setCurrentPage}
+                setOrder={setOrder}
+            />
             <Paginado
                 allPokes={allPokes.length}
                 pokesPerPage={pokesPerPage}
                 paginado={paginado}
-            >
-            </Paginado>
+            />
             <div className={s.cards_list}>
                 {
                     currentPokes?.map(poke => {

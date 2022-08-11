@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Paginado({ allPokes, pokesPerPage, paginado }) {
+export default function Paginado({ allPokes, pokesPerPage, paginado, setCurrentPage }) {
     const pagenumbers = [];
     const round = Math.ceil(allPokes / pokesPerPage)
 

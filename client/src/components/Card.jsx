@@ -1,10 +1,15 @@
 import React from "react";
-import s from './Card.module.css'
+import { Link } from 'react-router-dom';
+import s from './Card.module.css';
 
-export default function Card({ name, img, types }) {
+export default function Card({ name, img, types, id }) {
 
     return (
-        <div className={s.card}>
+        <div className={s.card} >
+            <Link to={`/detail/${id}`}>
+                <button> Detail</button>
+            </Link>
+
             <div className={s.card_title}>
                 <p>{name.toUpperCase()}</p>
                 {

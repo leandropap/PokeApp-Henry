@@ -43,7 +43,7 @@ export const getPokeByName = (name) => {
 export const getPokeDetail = (id) => {
     return async function (dispatch) {
         try {
-            let pokeDetail = await axios.get(`http://localhost:3001/pokemons/:${id}`);
+            let pokeDetail = await axios.get(`http://localhost:3001/pokemons/${id}`);
 
             return dispatch({
                 type: GET_POKE_BY_ID,

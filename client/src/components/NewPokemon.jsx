@@ -38,11 +38,11 @@ export default function NewPokemon() {
         })
     };
 
-    const handleClick = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        //console.log(input);
         dispatch(postPokemon(input));
         alert(`${input.name} created succesfully`);
+        console.log(input)
         setInput({ name: '', types: [], img: '', hp: '', attack: '', defense: '', speed: '', height: '', weight: '' });
     }
 
@@ -65,7 +65,7 @@ export default function NewPokemon() {
             <NavBar />
             <h1>Create your own Pokemon</h1>
 
-            <form onSubmit={e => { handleClick(e) }}>
+            <form onSubmit={e => { handleSubmit(e) }}>
                 <div>
                     <label>Name</label>
                     <input type='text' name='name' value={input.name} onChange={e => handleChange(e)} />

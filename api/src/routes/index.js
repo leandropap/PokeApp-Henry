@@ -10,6 +10,10 @@ const { Op } = require('sequelize');
 
 const router = Router();
 
+let allApiPokes = []
+let allDbPokes = []
+let allPokes = []
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
@@ -22,8 +26,6 @@ router.get('/', (req, res) => {
 
 // GET ALL POKEMONS - GET POKEMON BY QUERY
 //Devuelve Poke buscado por query
-// Si no hubiera query, devuelve todos los pokemons
-// FALTA MOSTRAR POKEMONS CREADOS EN DB EN EL LISTADO 
 router.get('/pokemons', async (req, res) => {
     let { name } = req.query;
     if (name) {
@@ -46,9 +48,9 @@ router.get('/pokemons', async (req, res) => {
         };
     }
     else {
-        const allApiPokes = await getApiPokemons();
-        const allDbPokes = await getPokemonDB();
-        const allPokes = allApiPokes.concat(allDbPokes);
+        allApiPokes = await getApiPokemons();
+        allDbPokes = await getPokemonDB();
+        allPokes = allApiPokes.concat(allDbPokes);
         return res.send(allPokes);
     }
 });
@@ -56,7 +58,6 @@ router.get('/pokemons', async (req, res) => {
 //GET POKEMONS BY PARAMS
 //Busca pokes pasados como params, sea por su ID o nombre.
 //Para la DB usamos Id tipo UUID que es alfanumerica de 36 char.
-//FALTA RESOLVER QUE DEVUELVA DESDE DB PASANDO NOMBRE
 router.get('/pokemons/:id', async (req, res) => {
     let { id } = req.params;
     if (id.length === 36) {
@@ -91,19 +92,33 @@ router.get('/type', async (req, res) => {
 
 //POST POKEMONS
 //Pasamos data por body y hace post de un nuevo pokemon hacia nuestra DB
-router.post('/pokemons', async (req, res) => {
+router.post('/pokemons', async (req, res, next) => {
+    const { name, hp, attack, defense, speed, height, weight, img } = req.body;
+    const types = req.body.types
+    if (!name || !types) return res.status(404).send('Missing data')
     try {
-        const { name, hp, attack, defense, speed, height, weight, type, createdInDb, img } = req.body;
-        const createdPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, createdInDb, img });
+        const createdPoke = await Pokemon.create(req.body);
+        console.log(types)
         const pokeType = await Types.findAll({
-            where: { name: { [Op.or]: [type] } }
+            where: { name: { [Op.or]: [types] } }
         });
         createdPoke.addTypes(pokeType);
-        res.send('Pokemon created succesfully')
+        res.status(200).send('Pokemon created succesfully')
     } catch (error) {
-        res.status(500).send(error)
+        next(error)
     }
 
 });
+
+router.delete('/pokemons', async (req, res) => {
+    let id = req.params;
+    try {
+        allPokes = allPokes.filter(p => p.id !== id)
+        return res.status(200).send('Pokemon deleted succesfully')
+    } catch (error) {
+        res.send(404).send(error)
+    }
+
+})
 
 module.exports = router;

@@ -10,7 +10,7 @@ export default function Detail(props) {
 
     React.useEffect(() => {
         dispatch(getPokeDetail(props.match.params.id))
-    }, [dispatch]);
+    }, [props.match.params.id, dispatch]);
 
     return (
         <>
@@ -22,7 +22,6 @@ export default function Detail(props) {
                     pokeDetail.length ?
                         <div>
                             <h2>{pokeDetail[0].name.toUpperCase()}</h2>
-                            <p>{pokeDetail[0].id}</p>
                             <img src={pokeDetail[0].img} alt="Not found" width="300px" />
                             <p>{pokeDetail[0].createdInDb ? pokeDetail[0].types.map(t => t.name.toUpperCase() + ' ') : pokeDetail[0].types.map(t => t.toUpperCase() + ' ')}</p>
                             <p>HP: {pokeDetail[0].hp}</p>

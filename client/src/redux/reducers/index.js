@@ -1,10 +1,10 @@
-import { GET_POKEMONS, GET_POKE_BY_NAME, GET_POKE_BY_ID, POST_POKEMON, GET_POKETYPES, FILTER_BY_TYPE, ORDER_BY_NAME, ORDER_BY_ATTACK, FILTER_BY_SOURCE } from "../actions";
+import { GET_POKEMONS, GET_POKE_BY_NAME, GET_POKE_BY_ID, POST_POKEMON, GET_POKETYPES, FILTER_BY_TYPE, ORDER_BY_NAME, ORDER_BY_ATTACK, FILTER_BY_SOURCE, DELETE_POKEMON } from "../actions";
 
 const initialState = {
     pokemons: [],
     allPokemons: [],
     pokeTypes: [],
-    pokeDetail: []
+    pokeDetail: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -95,6 +95,11 @@ const rootReducer = (state = initialState, action) => {
                     pokemons: sortedPokesAT
                 }
             };
+        case DELETE_POKEMON:
+            return {
+                ...state,
+                pokemons: state.pokemons.filter(p => p !== action.payload)
+            }
         default: return state
     }
 }

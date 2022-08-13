@@ -34,9 +34,7 @@ export default function Home() {
 
     return (
         <>
-            <NavBar
-                setCurrentPage={setCurrentPage}
-            />
+            <NavBar />
             <Link to='/newpokemon'>
                 <button className={s.action_button}>Create new Pokemon</button>
             </Link>

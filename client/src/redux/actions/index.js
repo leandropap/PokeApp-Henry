@@ -12,7 +12,8 @@ export const GET_POKETYPES = 'GET_POKETYPES';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const FILTER_BY_SOURCE = 'FILTER_BY_SOURCE';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
-export const ORDER_BY_ATTACK = 'ORDER_BY_ATTACK'
+export const ORDER_BY_ATTACK = 'ORDER_BY_ATTACK';
+export const DELETE_POKEMON = 'DELETE_POKEMON';
 
 //Action Creators
 export const getPokemons = () => {
@@ -69,7 +70,6 @@ export const getPokeTypes = () => {
 export const postPokemon = (payload) => {
     return async function () {
         let pokePost = await axios.post('http://localhost:3001/pokemons', payload)
-        console.log(pokePost)
         return pokePost
     }
 }
@@ -95,11 +95,18 @@ export const orderByName = (payload) => {
         type: ORDER_BY_NAME,
         payload
     })
-}
+};
 
 export const orderByAttack = (payload) => {
     return ({
         type: ORDER_BY_ATTACK,
+        payload
+    })
+};
+
+export const deletePokemon = (payload) => {
+    return ({
+        type: DELETE_POKEMON,
         payload
     })
 }

@@ -9,7 +9,16 @@
 }
 
 .card_image {
-    margin-top: 50px
+    margin-top: -15px;
+}
+
+.card_types {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card_type {
+    margin-top: 10px
 }
 
 .card_title {

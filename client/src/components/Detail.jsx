@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
-import { getPokeDetail } from "../redux/actions";
+import { deletePokemon, getPokeDetail } from "../redux/actions";
 import s from './Detail.module.css'
 
 export default function Detail(props) {
@@ -11,6 +11,10 @@ export default function Detail(props) {
     React.useEffect(() => {
         dispatch(getPokeDetail(props.match.params.id))
     }, [props.match.params.id, dispatch]);
+
+    const handleDelete = () => {
+
+    }
 
     return (
         <>
@@ -23,7 +27,7 @@ export default function Detail(props) {
                         <div>
                             <h2>{pokeDetail[0].name.toUpperCase()}</h2>
                             <img src={pokeDetail[0].img} alt="Not found" width="300px" />
-                            <p>{pokeDetail[0].createdInDb ? pokeDetail[0].types.map(t => t.name.toUpperCase() + ' ') : pokeDetail[0].types.map(t => t.toUpperCase() + ' ')}</p>
+                            <p>TYPES: {pokeDetail[0].createdInDb ? pokeDetail[0].types.map(t => t.name.toUpperCase() + ' ') : pokeDetail[0].types.map(t => t.toUpperCase() + ' ')}</p>
                             <p>HP: {pokeDetail[0].hp}</p>
                             <p>ATTACK: {pokeDetail[0].attack}</p>
                             <p>DEFENSE: {pokeDetail[0].defense}</p>

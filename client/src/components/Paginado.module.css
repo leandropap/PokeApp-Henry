@@ -1,21 +1,14 @@
-.cards_list {
-    width: 100%;
+.display {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.animate {
-    transition: all 0.1s;
-    -webkit-transition: all 0.1s;
-}
-
-.action_button {
+.button {
     position: relative;
-    padding: 10px 40px;
+    padding: 10px 10px;
     margin: 0px 10px 10px 0px;
     float: left;
-    border-radius: 10px;
+    border-radius: 15px;
     font-family: 'Calibri', cursive;
     font-weight: bold;
     font-size: 20px;
@@ -26,7 +19,7 @@
     text-shadow: 0px -2px #D1B358;
 }
 
-.action_button:active {
+.button:active {
     transform: translate(0px, 5px);
     -webkit-transform: translate(0px, 5px);
     border-bottom: 1px solid;

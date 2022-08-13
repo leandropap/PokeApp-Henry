@@ -19,7 +19,7 @@ export default function Card({ name, img, types, id }) {
                 <div className={s.card_types}>
                     {
                         types.map(t => {
-                            if (typeof t === 'object') return (<div> {t.name.toUpperCase()} </div>)
+                            if (typeof t === 'object') return (<div key={t.name}> {t.name.toUpperCase()} </div>)
                             else return (
                                 <div key={t} className={s.card_type}>
                                     {t.toUpperCase()}

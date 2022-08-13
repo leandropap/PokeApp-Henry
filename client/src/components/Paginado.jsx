@@ -1,6 +1,7 @@
 import React from "react";
+import s from './Paginado.module.css'
 
-export default function Paginado({ allPokes, pokesPerPage, paginado, setCurrentPage }) {
+export default function Paginado({ allPokes, pokesPerPage, paginado }) {
     const pagenumbers = [];
     const round = Math.ceil(allPokes / pokesPerPage)
 
@@ -9,10 +10,10 @@ export default function Paginado({ allPokes, pokesPerPage, paginado, setCurrentP
     }
 
     return (
-        <nav>
+        <nav className={s.display}>
             {pagenumbers && pagenumbers.map(n => {
                 return (
-                    <button className="n" key={n} >
+                    <button className={s.button} key={n} >
                         <a onClick={() => { paginado(n) }}> {n}</a>
                     </button>
                 )

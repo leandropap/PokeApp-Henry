@@ -31,9 +31,14 @@ const rootReducer = (state = initialState, action) => {
         };
         case FILTER_BY_TYPE:
             const allPokes = state.pokemons;
-            const typeFilter = action.payload === 'all' ?
-                state.allPokemons :
-                allPokes.filter(p => (p.types[0] === action.payload || (p.types[1] && p.types[1] === action.payload)))
+            let typeFilter = []
+            if (action.payload === 'all') {
+                typeFilter = state.allPokemons
+            } else {
+                const filterDb = allPokes.filter(p => p.createdInDb).filter(p => (p.types[0].name === action.payload || (p.types[1] && p.types[1].name === action.payload)))
+                const filterApi = allPokes.filter(p => (p.types[0] === action.payload || (p.types[1] && p.types[1] === action.payload)))
+                typeFilter = filterApi.concat(filterDb)
+            }
             return {
                 ...state,
                 pokemons: typeFilter
@@ -43,7 +48,7 @@ const rootReducer = (state = initialState, action) => {
             let sourceFilter = []
             if (action.payload === 'all') sourceFilter = state.allPokemons;
             else if (action.payload === 'db') {
-                sourceFilter = filterPokemons.filter(p => typeof p.id === 'string')
+                sourceFilter = filterPokemons.filter(p => p.createdInDb)
             }
             else if (action.payload === 'api') sourceFilter = filterPokemons.filter(p => typeof p.id === 'number')
             return {

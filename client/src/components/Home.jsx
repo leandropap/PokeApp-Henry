@@ -33,25 +33,39 @@ export default function Home() {
     }
 
     return (
-        <>
-            <NavBar />
-            <Link to='/newpokemon'>
-                <button className={s.action_button}>Create new Pokemon</button>
-            </Link>
-            <h1> Pokemon Web App</h1>
+        <div className={s.display}>
+            <a href="/home">
+                <img src="https://i.imgur.com/WBgyfbD.png" alt="Not Found" width="350px" />
+            </a>
 
-            <button onClick={e => { handleClick(e) }} className={s.action_button}>
-                Reload Pokemons
-            </button>
-            <Filter
-                setCurrentPage={setCurrentPage}
-                setOrder={setOrder}
-            />
+            <div className={s.button_list}>
+                <div>
+                    <Link to='/newpokemon'>
+                        <button className={s.button}>Create Pokémon</button>
+                    </Link>
+
+                    <button onClick={e => { handleClick(e) }} className={s.button}>
+                        Reload Pokémons
+                    </button>
+
+                </div>
+
+                <Filter
+                    setCurrentPage={setCurrentPage}
+                    setOrder={setOrder}
+                />
+
+                <NavBar />
+            </div>
+
+            <br />
+
             <Paginado
                 allPokes={allPokes.length}
                 pokesPerPage={pokesPerPage}
                 paginado={paginado}
             />
+
             <div className={s.cards_list}>
                 {
                     currentPokes?.map(poke => {
@@ -69,6 +83,6 @@ export default function Home() {
                 }
             </div >
 
-        </>
+        </div>
     )
 }

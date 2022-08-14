@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { getPokeTypes, postPokemon } from '../redux/actions';
 import NavBar from './NavBar'
 
@@ -62,6 +63,9 @@ export default function NewPokemon() {
 
     return (
         <>
+            <Link to='/home'>
+                <button >Home</button>
+            </Link>
             <NavBar />
             <h1>Create your own Pokemon</h1>
 

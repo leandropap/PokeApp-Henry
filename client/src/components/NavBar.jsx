@@ -21,13 +21,15 @@ export default function NavBar() {
 
     return (
         <div className={s.display}>
-            <Link to='/home' >
-                <button className={s.action_button}>Home</button>
-            </Link>
 
-            <input type='text' placeholder='Search any Pokemon'
-                onChange={e => { handleInputChange(e) }} />
-            <button type='submit' onClick={e => { handleSubmit(e) }} className={s.action_button} > Catch'em ! </button>
+
+            <div className={s.search}>
+                <input type='text' placeholder='Search any Pokémon'
+                    onChange={e => { handleInputChange(e) }} />
+                <button type='submit' onClick={e => { handleSubmit(e) }} className={s.button} > Search </button>
+            </div>
+
+
         </div>
     )
 

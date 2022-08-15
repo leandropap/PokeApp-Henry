@@ -10,10 +10,6 @@ const { Op } = require('sequelize');
 
 const router = Router();
 
-let allApiPokes = []
-let allDbPokes = []
-let allPokes = []
-
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
@@ -48,9 +44,9 @@ router.get('/pokemons', async (req, res) => {
         };
     }
     else {
-        allApiPokes = await getApiPokemons();
-        allDbPokes = await getPokemonDB();
-        allPokes = allApiPokes.concat(allDbPokes);
+        const allApiPokes = await getApiPokemons();
+        const allDbPokes = await getPokemonDB();
+        const allPokes = allApiPokes.concat(allDbPokes);
         return res.send(allPokes);
     }
 });
@@ -110,15 +106,18 @@ router.post('/pokemons', async (req, res, next) => {
 
 });
 
-router.delete('/pokemons', async (req, res) => {
-    let id = req.params;
+//DELETE POKEMONS
+router.delete('/pokemons/:id', async (req, res) => {
+    const { id } = req.params;
+    // console.log(id)
     try {
-        allPokes = allPokes.filter(p => p.id !== id)
-        return res.status(200).send('Pokemon deleted succesfully')
+        let deletedPokemon = await Pokemon.findByPk(id)
+        // console.log(deletedPokemon)
+        await deletedPokemon.destroy()
+        res.status(200).send('Pokemon deleted succesfully')
     } catch (error) {
         res.send(404).send(error)
     }
-
 })
 
 module.exports = router;

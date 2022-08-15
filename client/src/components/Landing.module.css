@@ -1,28 +1,12 @@
-.detail {
-    margin: 20px auto;
-    width: 800px;
-    height: 500px;
-    border-radius: 40px;
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-.text {
-    padding-top: 20px;
-}
-
 .display {
     display: flex;
-    width: 75%;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .button {
-    position: relative;
     padding: 10px 40px;
     margin: 0px 10px 10px 0px;
-    float: left;
     border-radius: 10px;
     font-family: 'Calibri', cursive;
     font-weight: bold;
@@ -38,4 +22,8 @@
     transform: translate(0px, 5px);
     -webkit-transform: translate(0px, 5px);
     border-bottom: 1px solid;
+}
+
+.img {
+    margin-top: -50px
 }

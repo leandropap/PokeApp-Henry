@@ -74,6 +74,13 @@ export const postPokemon = (payload) => {
     }
 }
 
+export const deletePokemon = (payload) => {
+    return async function () {
+        let pokeDelete = await axios.delete(`http://localhost:3001/pokemons/${payload}`)
+        return pokeDelete
+    }
+}
+
 export const filterPokeByType = (payload) => {
     console.log(payload)
     return ({
@@ -104,9 +111,3 @@ export const orderByAttack = (payload) => {
     })
 };
 
-export const deletePokemon = (payload) => {
-    return ({
-        type: DELETE_POKEMON,
-        payload
-    })
-}

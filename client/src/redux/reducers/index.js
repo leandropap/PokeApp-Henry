@@ -29,6 +29,10 @@ const rootReducer = (state = initialState, action) => {
         case POST_POKEMON: return {
             ...state
         };
+        case DELETE_POKEMON:
+            return {
+                ...state,
+            };
         case FILTER_BY_TYPE:
             const allPokes = state.pokemons;
             let typeFilter = []
@@ -100,11 +104,6 @@ const rootReducer = (state = initialState, action) => {
                     pokemons: sortedPokesAT
                 }
             };
-        case DELETE_POKEMON:
-            return {
-                ...state,
-                pokemons: state.pokemons.filter(p => p !== action.payload)
-            }
         default: return state
     }
 }

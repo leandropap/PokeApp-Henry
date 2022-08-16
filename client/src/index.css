@@ -3,6 +3,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   background-image: url("https://i.imgur.com/2gfwG.png");
+  background-size: cover;
 }
 
 code {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom'
 import { getPokeTypes, postPokemon } from '../redux/actions';
 import NavBar from './NavBar'
+import s from './NewPokemon.module.css'
 
 const validate = (input) => {
     let errors = {};
@@ -94,7 +95,7 @@ export default function NewPokemon() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (Object.keys(errors).length > 0) alert(`Missing data`)
+        if (Object.keys(errors).length > 0 || !input.name) alert(`Missing data`)
         else {
             dispatch(postPokemon(input));
             alert(`${input.name} created succesfully`);
@@ -108,7 +109,7 @@ export default function NewPokemon() {
     return (
         <>
             <Link to='/home'>
-                <button >Home</button>
+                <button className={s.button}>Home</button>
             </Link>
             <NavBar />
             <h1>Create your own Pokemon</h1>
@@ -167,7 +168,7 @@ export default function NewPokemon() {
                     {errors.weight && (<h4>{errors.weight}</h4>)}
                 </div>
 
-                <button type='submit' >Create Pokemon</button>
+                <button type='submit' className={s.submit_button}>Create Pokemon</button>
             </form>
         </>
     )

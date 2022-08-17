@@ -40,7 +40,7 @@ router.get('/pokemons', async (req, res) => {
             const apiPokemon = await getPokemonByName(name);
             res.send(apiPokemon);
         } catch (error) {
-            res.status(404).send('Pokemon not found');
+            res.send(`${name} not found`);
         };
     }
     else {

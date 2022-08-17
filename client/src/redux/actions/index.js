@@ -30,6 +30,7 @@ export const getPokeByName = (name) => {
     return async function (dispatch) {
         try {
             let pokeName = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
+            // console.log(pokeName.data)
 
             return dispatch({
                 type: GET_POKE_BY_NAME,

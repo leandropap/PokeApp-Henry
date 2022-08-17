@@ -66,7 +66,29 @@ export default function Home() {
                 paginado={paginado}
             />
 
-            <div className={s.cards_list}>
+            <div>
+                {typeof currentPokes[0] === 'string' ?
+                    <div>
+                        <h1> {currentPokes[0]} </h1>
+                    </div> : <div className={s.cards_list}>
+                        {
+                            currentPokes.map(poke => {
+                                return (
+                                    <Card
+                                        key={poke.id}
+                                        id={poke.id}
+                                        img={poke.img}
+                                        name={poke.name}
+                                        types={poke.types}
+                                        attack={poke.attack}
+                                    />
+                                )
+                            })
+                        }
+                    </div >}
+            </div>
+
+            {/* <div className={s.cards_list}>
                 {
                     currentPokes?.map(poke => {
                         return (
@@ -81,7 +103,7 @@ export default function Home() {
                         )
                     })
                 }
-            </div >
+            </div > */}
 
         </div>
     )

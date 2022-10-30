@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getPokeByName } from "../redux/actions";
+import { getPokeByName } from "../../redux/actions";
 import s from './NavBar.module.css'
 
 export default function NavBar() {
@@ -21,13 +21,11 @@ export default function NavBar() {
 
     return (
         <div className={s.display}>
-
             <div className={s.search}>
                 <input type='text' placeholder='Search any Pokémon'
                     onChange={e => { handleInputChange(e) }} />
                 <button type='submit' onClick={e => { handleSubmit(e) }} className={s.button} > Search </button>
             </div>
-
         </div>
     )
 

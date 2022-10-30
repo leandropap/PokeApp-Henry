@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom'
-import { getPokeTypes, postPokemon } from '../redux/actions';
-import NavBar from './NavBar'
+import { getPokeTypes, postPokemon } from '../../redux/actions';
+import NavBar from '../NavBar/NavBar'
 import s from './NewPokemon.module.css'
 
 const validate = (input) => {

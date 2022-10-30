@@ -12,6 +12,8 @@ const getPokeTypes = async (req, res) => {
     return pokeTypes
 }
 
+getPokeTypes();
+
 module.exports = {
     getPokeTypes
 }

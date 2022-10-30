@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPokemons } from '../redux/actions';
+import { getPokemons } from '../../redux/actions';
 import { Link } from 'react-router-dom'
-import NavBar from './NavBar'
-import Filter from './Filter'
-import Paginado from './Paginado'
-import Card from './Card'
+import NavBar from '../NavBar/NavBar'
+import Filter from '../Filter/Filter'
+import Paginado from '../Paginado/Paginado'
+import Card from '../Card/Card'
 import s from './Home.module.css'
 
 
@@ -34,37 +34,37 @@ export default function Home() {
 
     return (
         <div className={s.display}>
-            <a href="/home">
-                <img src="https://i.imgur.com/WBgyfbD.png" alt="Not Found" width="350px" />
-            </a>
 
-            <div className={s.button_list}>
-                <div>
-                    <Link to='/newpokemon'>
-                        <button className={s.button}>Create Pokémon</button>
-                    </Link>
+            <div>
 
-                    <button onClick={e => { handleClick(e) }} className={s.button}>
-                        Reload Pokémons
-                    </button>
+                <div className={s.button_list}>
+                    <div>
+                        <Link to='/newpokemon'>
+                            <button className={s.button}>Create Pokémon</button>
+                        </Link>
 
+                        <button onClick={e => { handleClick(e) }} className={s.button}>
+                            Reload Pokémons
+                        </button>
+
+                    </div>
+
+                    <Filter
+                        setCurrentPage={setCurrentPage}
+                        setOrder={setOrder}
+                    />
+
+                    <NavBar />
                 </div>
 
-                <Filter
-                    setCurrentPage={setCurrentPage}
-                    setOrder={setOrder}
+                <br />
+
+                <Paginado
+                    allPokes={allPokes.length}
+                    pokesPerPage={pokesPerPage}
+                    paginado={paginado}
                 />
-
-                <NavBar />
             </div>
-
-            <br />
-
-            <Paginado
-                allPokes={allPokes.length}
-                pokesPerPage={pokesPerPage}
-                paginado={paginado}
-            />
 
             <div>
                 {typeof currentPokes[0] === 'string' ?
@@ -87,23 +87,6 @@ export default function Home() {
                         }
                     </div >}
             </div>
-
-            {/* <div className={s.cards_list}>
-                {
-                    currentPokes?.map(poke => {
-                        return (
-                            <Card
-                                key={poke.id}
-                                id={poke.id}
-                                img={poke.img}
-                                name={poke.name}
-                                types={poke.types}
-                                attack={poke.attack}
-                            />
-                        )
-                    })
-                }
-            </div > */}
 
         </div>
     )

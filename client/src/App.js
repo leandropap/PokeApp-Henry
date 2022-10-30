@@ -1,10 +1,10 @@
 import './App.css';
 // import { BrowserRouter, Router, Switch } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
-import Landing from './components/Landing'
-import Home from './components/Home';
-import Detail from './components/Detail';
-import NewPokemon from './components/NewPokemon'
+import Landing from './components/Landing/Landing'
+import Home from './components/Home/Home';
+import Detail from './components/Detail/Detail';
+import NewPokemon from './components/NewPokemon/NewPokemon'
 
 function App() {
   return (

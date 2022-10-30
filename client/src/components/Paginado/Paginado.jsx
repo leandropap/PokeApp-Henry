@@ -13,8 +13,8 @@ export default function Paginado({ allPokes, pokesPerPage, paginado }) {
         <nav className={s.display}>
             {pagenumbers && pagenumbers.map(n => {
                 return (
-                    <button className={s.button} key={n} >
-                        <a onClick={() => { paginado(n) }}> {n}</a>
+                    <button className={s.button} key={n} onClick={() => { paginado(n) }}>
+                        <a> {n}</a>
                     </button>
                 )
             }

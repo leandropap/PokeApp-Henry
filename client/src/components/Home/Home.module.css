@@ -1,3 +1,7 @@
+.navContainer {
+    position: fixed;
+}
+
 .display {
     display: flex;
     flex-direction: column;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from 'react-router-dom'
-import { deletePokemon, getPokeDetail } from "../redux/actions";
+import { deletePokemon, getPokeDetail } from "../../redux/actions";
 import s from './Detail.module.css'
 
 export default function Detail(props) {
@@ -39,29 +39,29 @@ export default function Detail(props) {
                                 </div>
                                 <div>
                                     <div>
-                                        <h3>TYPES: {pokeDetail[0].createdInDb ? pokeDetail[0].types.map(t => t.name.toUpperCase() + ' / ') : pokeDetail[0].types.map(t => t.toUpperCase() + ' / ')}</h3>
+                                        <h3>Type: {pokeDetail[0].createdInDb ? pokeDetail[0].types.map(t => t.name.toUpperCase() + ' / ') : pokeDetail[0].types.map(t => t.toUpperCase() + ' / ')}</h3>
                                     </div>
                                     <div>
-                                        <h3>ATTACK: {pokeDetail[0].attack}</h3>
-                                        <h3>DEFENSE: {pokeDetail[0].defense}</h3>
+                                        <h3>Attack: {pokeDetail[0].attack}</h3>
+                                        <h3>Defense: {pokeDetail[0].defense}</h3>
                                     </div>
                                     <div>
                                         <h3>HP: {pokeDetail[0].hp}</h3>
-                                        <h3>SPEED: {pokeDetail[0].speed}</h3>
+                                        <h3>Speed: {pokeDetail[0].speed}</h3>
                                     </div>
 
                                     <div>
-                                        <h3>HEIGHT: {pokeDetail[0].height}</h3>
-                                        <h3>WEIGHT: {pokeDetail[0].weight}</h3>
+                                        <h3>Height: {pokeDetail[0].height}</h3>
+                                        <h3>Weight: {pokeDetail[0].weight}</h3>
                                     </div>
 
                                 </div>
                             </div>
-                            {pokeDetail[0].id.length === 36 ?
+                            {pokeDetail[0].id.length === 36 &&
                                 <div>
                                     <button className={s.button} onClick={e => { handleDelete(e) }}>Delete</button>
                                 </div>
-                                : null
+
 
                             }
                         </div>

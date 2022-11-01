@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from 'react-router-dom'
 import { deletePokemon, getPokeDetail } from "../../redux/actions";
 import s from './Detail.module.css'
+import NavBar from '../NavBar/NavBar'
 
 export default function Detail(props) {
     const dispatch = useDispatch();
@@ -23,10 +24,14 @@ export default function Detail(props) {
     }
 
     return (
-        <>
-            <Link to='/home'>
-                <button className={s.button}>Home</button>
-            </Link>
+        <div>
+            <div>
+                <Link to='/home'>
+                    <button className={s.button}>Home</button>
+                </Link>
+
+                <NavBar />
+            </div>
             <div className={s.detail}>
                 {
                     pokeDetail.length ?
@@ -35,29 +40,53 @@ export default function Detail(props) {
 
                             <div className={s.display}>
                                 <div>
-                                    <img src={pokeDetail[0].img} alt="Not found" width="300px" />
+                                    <div className={s.image}>
+                                        <img src={pokeDetail[0].img} alt="Not found" width="350px" />
+                                    </div>
+                                    <h3>
+                                        <div className={s.types_display}>
+                                            {
+                                                pokeDetail[0].createdInDb ?
+                                                    pokeDetail[0].types.map(t => (
+                                                        <div className={s.types_border}>
+                                                            <div className={`${s.type} ${s[t]}`}>
+                                                                {t.name.toUpperCase()}
+                                                            </div>
+                                                        </div>)) :
+                                                    pokeDetail[0].types.map(t => (
+                                                        <div className={s.types_border}>
+                                                            <div className={`${s.type} ${s[t]}`}>
+                                                                {t.toUpperCase()}
+                                                            </div>
+                                                        </div>))
+                                            }
+                                        </div>
+                                    </h3>
                                 </div>
-                                <div>
-                                    <div>
-                                        <h3>Type: {pokeDetail[0].createdInDb ? pokeDetail[0].types.map(t => t.name.toUpperCase() + ' / ') : pokeDetail[0].types.map(t => t.toUpperCase() + ' / ')}</h3>
-                                    </div>
-                                    <div>
-                                        <h3>Attack: {pokeDetail[0].attack}</h3>
-                                        <h3>Defense: {pokeDetail[0].defense}</h3>
-                                    </div>
-                                    <div>
-                                        <h3>HP: {pokeDetail[0].hp}</h3>
-                                        <h3>Speed: {pokeDetail[0].speed}</h3>
-                                    </div>
 
-                                    <div>
-                                        <h3>Height: {pokeDetail[0].height}</h3>
-                                        <h3>Weight: {pokeDetail[0].weight}</h3>
-                                    </div>
+                                <ul className={s.stats}>
+                                    <li>
+                                        <h3>ATTACK {pokeDetail[0].attack}</h3>
+                                    </li>
+                                    <li>
+                                        <h3>DEFENSE {pokeDetail[0].defense}</h3>
+                                    </li>
+                                    <li>
+                                        <h3>HP {pokeDetail[0].hp}</h3>
+                                    </li>
+                                    <li>
+                                        <h3>SPEED {pokeDetail[0].speed}</h3>
+                                    </li>
+                                    <li>
+                                        <h3>HEIGHT {pokeDetail[0].height}</h3>
+                                    </li>
+                                    <li>
+                                        <h3>WEIGHT {pokeDetail[0].weight}</h3>
+                                    </li>
 
-                                </div>
+                                </ul>
                             </div>
-                            {pokeDetail[0].id.length === 36 &&
+                            {pokeDetail[0].createdInDb &&
                                 <div>
                                     <button className={s.button} onClick={e => { handleDelete(e) }}>Delete</button>
                                 </div>
@@ -68,6 +97,6 @@ export default function Detail(props) {
                         : <h2>Loading...</h2>
                 }
             </div>
-        </>
+        </div>
     )
 }

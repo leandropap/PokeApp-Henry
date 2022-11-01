@@ -33,7 +33,7 @@ export default function Card({ name, img, types, id }) {
                             else return (
                                 <div className={s.types_border} >
                                     <div key={t} className={s.card_type}>
-                                        <div className={`${s.type} ${s[t]}`} margin='5px'>
+                                        <div className={`${s.type} ${s[t]}`}>
                                             {t.toUpperCase()}
                                         </div>
                                     </div>

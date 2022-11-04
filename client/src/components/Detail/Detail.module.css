@@ -41,143 +41,143 @@
 .normal {
     padding: 2px 2px;
     border: solid 1px #ffffff;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #ffffff;
 }
 
 .fighting {
     padding: 2px 2px;
-    border: solid 1px #490000;
-    border-radius: 10px;
-    background-color: #490000;
+    border: solid 1px #940202;
+    border-radius: 7px;
+    background-color: #940202;
 }
 
 .flying {
     padding: 2px 2px;
     border: solid 1px #ffffff7e;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #ffffff7e;
 }
 
 .poison {
     padding: 2px 2px;
     border: solid 1px #c90064;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #c90064;
 }
 
 .ground {
     padding: 2px 2px;
     border: solid 1px #865700;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #865700;
 }
 
 .rock {
     padding: 2px 2px;
     border: solid 1px #8f6f34a8;
-    ;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #8f6f34a8;
 }
 
 .bug {
     padding: 2px 2px;
     border: solid 1px #b2f300;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #b2f300;
 }
 
 .ghost {
     padding: 2px 2px;
     border: solid 1px #8400ff;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #8400ff;
 }
 
 .steel {
     padding: 2px 2px;
     border: solid 1px #ffffff71;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #ffffff71;
 }
 
 .fire {
     padding: 2px 2px;
     border: solid 1px #ca520c;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #ca520c
 }
 
 .water {
     padding: 2px 2px;
     border: solid 1px #68cedb;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #68cedb
 }
 
 .grass {
     padding: 2px 2px;
     border: solid 1px #51db35;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #51db35
 }
 
 .electric {
     padding: 2px 2px;
     border: solid 1px #eeff00;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #eeff00;
 }
 
 .psychic {
     padding: 2px 2px;
     border: solid 1px #e02eab;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #e02eab;
 }
 
 .ice {
     padding: 2px 2px;
     border: solid 1px #3552f7;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #3552f7;
 }
 
 .dragon {
     padding: 2px 2px;
     border: solid 1px #436e3d;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #436e3d;
 }
 
 .dark {
     padding: 2px 2px;
     border: solid 1px #838baf63;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #838baf63;
 }
 
 .fairy {
     padding: 2px 2px;
     border: solid 1px #f370c1;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #f370c1;
 }
 
 .unknown {
     padding: 2px 2px;
     border: solid 1px #ffffff;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #ffffff;
 }
 
 .shadow {
     padding: 2px 2px;
     border: solid 1px #ffffff6c;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #ffffff6c;
 }
+
 
 .types_border {
     margin-top: 20px;

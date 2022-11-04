@@ -23,6 +23,23 @@ export default function Home() {
         setCurrentPage(currentPage)
     }
 
+    function handleNext(e, number) {
+        e.preventDefault();
+        const pages = Math.ceil(allPokes.length / pokesPerPage);
+        if (currentPage !== pages) {
+            setCurrentPage(number + 1)
+        };
+    };
+
+    function handlePrevious(e, number) {
+        e.preventDefault();
+        const pages = Math.ceil(allPokes.length / pokesPerPage);
+        if (currentPage !== 1) {
+            setCurrentPage(number - 1)
+        };
+    };
+
+
     React.useEffect(() => {
         dispatch(getPokemons())
     }, [dispatch]);
@@ -35,25 +52,19 @@ export default function Home() {
     return (
         <div className={s.display}>
 
-            <div>
-
+            <div className={s.navContainer}>
                 <div className={s.button_list}>
                     <div>
                         <Link to='/newpokemon'>
-                            <button className={s.button}>Create Pokémon</button>
+                            <button className={s.button}> Create </button>
                         </Link>
-
-                        <button onClick={e => { handleClick(e) }} className={s.button}>
-                            Reload Pokémons
-                        </button>
-
+                        <button onClick={e => { handleClick(e) }} className={s.button}> Reload </button>
                     </div>
 
                     <Filter
                         setCurrentPage={setCurrentPage}
                         setOrder={setOrder}
                     />
-
                     <NavBar />
                 </div>
 
@@ -63,30 +74,32 @@ export default function Home() {
                     allPokes={allPokes.length}
                     pokesPerPage={pokesPerPage}
                     paginado={paginado}
+                    handlePrevious={handlePrevious}
+                    handleNext={handleNext}
+                    currentPage={currentPage}
                 />
             </div>
 
-            <div>
-                {typeof currentPokes[0] === 'string' ?
-                    <div>
-                        <h1> {currentPokes[0]} </h1>
-                    </div> : <div className={s.cards_list}>
-                        {
-                            currentPokes.map(poke => {
-                                return (
-                                    <Card
-                                        key={poke.id}
-                                        id={poke.id}
-                                        img={poke.img}
-                                        name={poke.name}
-                                        types={poke.types}
-                                        attack={poke.attack}
-                                    />
-                                )
-                            })
-                        }
-                    </div >}
-            </div>
+
+            {typeof currentPokes[0] === 'string' ?
+                <div className={s.cards_list}>
+                    <h1> {currentPokes[0]} </h1>
+                </div> : <div className={s.cards_list}>
+                    {
+                        currentPokes.map(poke => {
+                            return (
+                                <Card
+                                    key={poke.id}
+                                    id={poke.id}
+                                    img={poke.img}
+                                    name={poke.name}
+                                    types={poke.types}
+                                    attack={poke.attack}
+                                />
+                            )
+                        })
+                    }
+                </div >}
 
         </div>
     )

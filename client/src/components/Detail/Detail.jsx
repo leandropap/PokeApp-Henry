@@ -29,14 +29,13 @@ export default function Detail(props) {
                 <Link to='/home'>
                     <button className={s.button}>Home</button>
                 </Link>
-
                 <NavBar />
             </div>
             <div className={s.detail}>
                 {
                     pokeDetail.length ?
                         <div>
-                            <h1 className={s.text}>{pokeDetail[0].name.toUpperCase()}</h1>
+                            <h1 className={s.text}>#{pokeDetail[0].id} {pokeDetail[0].name.toUpperCase()} </h1>
 
                             <div className={s.display}>
                                 <div>

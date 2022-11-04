@@ -32,23 +32,23 @@ export default function Filter({ setCurrentPage, setOrder }) {
         e.preventDefault();
         dispatch(orderByAttack(e.target.value));
         setCurrentPage(1);
-        setOrder(`Ordering a-Z< ${e.target.value}`)
+        setOrder(`Ordering A-Z< ${e.target.value}`)
     }
 
     return (
         <div className={s.display}>
             <div>
                 <div>
-                    <label>Sort by Name</label>
-                    <select onChange={e => { handleSortAZ(e) }}>
+                    <label className={s.label}>Name</label>
+                    <select onChange={e => { handleSortAZ(e) }} className={s.select}>
                         <option value='asc'>Ascending</option>
                         <option value='desc'>Descending</option>
                     </select>
                 </div>
 
                 <div>
-                    <label>Sort by attack</label>
-                    <select onChange={e => { handleSortAT(e) }}>
+                    <label className={s.label}>Attack</label>
+                    <select onChange={e => { handleSortAT(e) }} className={s.select}>
                         <option value='asc'>Ascending</option>
                         <option value='desc'>Descending</option>
                     </select>
@@ -57,16 +57,16 @@ export default function Filter({ setCurrentPage, setOrder }) {
 
             <div>
                 <div>
-                    <label>Filter by type</label>
-                    <select onChange={e => handleFilterPokeByType(e)}>
+                    <label className={s.label}>Type</label>
+                    <select onChange={e => handleFilterPokeByType(e)} className={s.select}>
                         <option value='all' key='0'>all</option>
                         {types.map(t => (<option value={t.name} key={t.id}> {t.name} </option>))}
                     </select>
                 </div>
 
                 <div>
-                    <label>Filter by source</label>
-                    <select onChange={e => handleFilterPokeBySource(e)}>
+                    <label className={s.label}>Source</label>
+                    <select onChange={e => handleFilterPokeBySource(e)} className={s.select}>
                         <option value='all'>All</option>
                         <option value='api'>From API</option>
                         <option value='db'>From DB</option>

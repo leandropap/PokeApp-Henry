@@ -2,3 +2,24 @@
     display: flex;
     flex-direction: row;
 }
+
+
+.label {
+    font-size: 1.1rem;
+    font-weight: bold;
+
+}
+
+.select {
+    width: 8vw;
+    outline: none;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 0rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+    cursor: pointer;
+    background-color: rgb(221, 221, 221);
+    ;
+}
